@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_app
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-network
+    environment:
+      - APP_ENV=dev
+      - APP_DEBUG=1
+
+  web:
+    image: nginx:latest
+    container_name: nginx_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./config/nginx/snippets:/etc/nginx/snippets
+    networks:
+      - app-network
+    depends_on:
+      - app
+
+networks:
+  app-network:
+    driver: bridge

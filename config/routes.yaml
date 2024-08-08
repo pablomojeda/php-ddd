@@ -1,0 +1,39 @@
+user_buyer_register:
+    path: /api/buyers/register
+    controller: App\Controller\BuyerController::register
+    methods: POST
+
+user_seller_register:
+    path: /api/sellers/register
+    controller: App\Controller\SellerController::register
+    methods: POST
+
+seller_add_product:
+    path: /api/sellers/{sellerId}/products
+    controller: App\Controller\SellerController::addProduct
+    methods: POST
+
+cart_create:
+    path: /api/carts/create
+    controller: App\Controller\CartController::createCart
+    methods: POST
+
+cart_add_item:
+    path: /api/carts/add-item
+    controller: App\Controller\CartController::addItem
+    methods: POST
+
+cart_remove_item:
+    path: /api/carts/remove-item
+    controller: App\Controller\CartController::removeItem
+    methods: POST
+
+cart_get_by_buyer:
+    path: /api/carts/buyer/{buyerId}
+    controller: App\Controller\CartController::getCartByBuyerId
+    methods: GET
+
+get_all_products:
+    path: /api/products
+    controller: App\Controller\ProductController::getAllProducts
+    methods: GET

@@ -1,0 +1,39 @@
+services:
+  # Default configuration for services in *this* file
+  _defaults:
+    autowire: true # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: false # Defines that services are private by default.
+
+  # Makes controllers public and autowire them (means you can type-hint services in actions).
+  App\Controller\:
+    resource: "../src/Controller"
+    public: true
+    tags: ["controller.service_arguments"]
+
+  # Register repository services automatically
+  App\Infrastructure\Persistence\InMemory\:
+    resource: "../src/Infrastructure/Persistence/InMemory"
+    public: false
+    autowire: true
+    autoconfigure: true
+
+  # Register domain services automatically
+  App\Domain\User\Service\:
+    resource: "../src/Domain/User/Service"
+    public: false
+    autowire: true
+    autoconfigure: true
+
+  App\Domain\Cart\Service\:
+    resource: "../src/Domain/Cart/Service"
+    public: false
+    autowire: true
+    autoconfigure: true
+
+  # Alias repository interfaces to their implementations
+  App\Domain\User\Repository\BuyerRepository: '@App\Infrastructure\Persistence\InMemory\InMemoryBuyerRepository'
+  App\Domain\User\Repository\SellerRepository: '@App\Infrastructure\Persistence\InMemory\InMemorySellerRepository'
+  App\Domain\Product\Repository\ProductRepository: '@App\Infrastructure\Persistence\InMemory\InMemoryProductRepository'
+  App\Domain\Cart\Repository\CartRepository: '@App\Infrastructure\Persistence\InMemory\InMemoryCartRepository'
+
