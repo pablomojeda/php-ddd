@@ -1,2 +1,17 @@
+# Ignore Composer dependencies
 /vendor/
+
+# Ignore node_modules
+/node_modules/
+
+# Ignore environment files
+.env
+
+# Ignore log files
+/log/
+*.log
+
+# Ignore Symfony cache and logs
+/var/cache/
+/var/log/
 
